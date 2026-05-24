@@ -1,6 +1,6 @@
 
 export default {
-  basePath: 'C:/Program Files/Git',
+  basePath: '/',
   supportedLocales: {
   "en-US": ""
 },
