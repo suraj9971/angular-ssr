@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/',
+  basePath: 'C:/Program Files/Git/cc-SOOD-7104B8FA/proxy/4000',
   supportedLocales: {
   "en-US": ""
 },
