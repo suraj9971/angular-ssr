@@ -1,0 +1,1 @@
+import{Oa as n,ab as o,bb as s,ib as i}from"./chunk-HKHX7PXZ.js";var a=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-website"]],decls:2,vars:0,template:function(e,c){e&1&&(o(0,"p"),i(1,"website works!"),s())},encapsulation:2})};export{a as WebsiteComponent};

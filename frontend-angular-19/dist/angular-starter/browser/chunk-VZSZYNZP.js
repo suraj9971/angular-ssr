@@ -1,0 +1,1 @@
+import{Oa as t,ab as p,bb as o,ib as a}from"./chunk-HKHX7PXZ.js";var i=class n{static \u0275fac=function(e){return new(e||n)};static \u0275cmp=t({type:n,selectors:[["app-mapping"]],decls:2,vars:0,template:function(e,s){e&1&&(p(0,"p"),a(1,"mapping works!"),o())},encapsulation:2})};export{i as MappingComponent};
