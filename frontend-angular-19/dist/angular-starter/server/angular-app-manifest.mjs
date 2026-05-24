@@ -2,7 +2,7 @@
 export default {
   bootstrap: () => import('./main.server.mjs').then(m => m.default),
   inlineCriticalCss: true,
-  baseHref: 'C:/Program Files/Git/cc-SOOD-7104B8FA/proxy/4000/',
+  baseHref: 'C:/Program Files/Git/',
   locale: undefined,
   routes: undefined,
   entryPointToBrowserMapping: {
@@ -470,8 +470,8 @@ export default {
   ]
 },
   assets: {
-    'index.csr.html': {size: 17180, hash: '04f803c8a48f5fbd507fa6708742a7d8c840b2d8ac50f70dfc679d3e3ff6b811', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 1619, hash: 'aa451a35af28c150c43c78ad81515daad14874cea4f87e85924b98a021cf909f', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 17152, hash: '7b5a38ce52f4c857f69878d48b1f0e06a8c5e7dd413b719b9f3e1a837443f33f', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 1591, hash: '3da13ddcae21ea6b93d786542d7246679a5eb2defb3ad0e77e24c1a5c93e0da4', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
     'styles-LUSAEYDT.css': {size: 315150, hash: '+OwAbkGQVwc', text: () => import('./assets-chunks/styles-LUSAEYDT_css.mjs').then(m => m.default)}
   },
 };
