@@ -11,7 +11,7 @@
     "coverage": "ng test --no-watch --code-coverage",
     "lint": "ng lint",
     "serve": "node dist/angular-starter/server/server.mjs"
-  },
+  }, 
   "private": true,
   "dependencies": {
     "@angular/animations": "19.2.13",
