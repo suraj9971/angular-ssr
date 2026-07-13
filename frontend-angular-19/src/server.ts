@@ -12,12 +12,17 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 const app = express();
 const commonEngine = new CommonEngine();
 
+const readEnv = (name: string, fallback = ''): string => {
+  const value = process.env[name] ?? process.env[`APPSETTING_${name}`];
+  return typeof value === 'string' && value.trim().length > 0 ? value.trim() : fallback;
+};
+
 const runtimeConfig = {
-  BASE_CURRENCY: process.env['BASE_CURRENCY'] || '',
-  BASE_LANGUAGE: process.env['BASE_LANGUAGE'] || '',
-  BASE_SITE_ID: process.env['BASE_SITE_ID'] || '',
-  OCC_BASE_URL: process.env['OCC_BASE_URL'] || '',
-  WEBSITE_NODE_DEFAULT_VERSION: process.env['WEBSITE_NODE_DEFAULT_VERSION'] || ''
+  BASE_CURRENCY: readEnv('BASE_CURRENCY', 'LOCALSERVER-USD'),
+  BASE_LANGUAGE: readEnv('BASE_LANGUAGE', 'localserver-env'),
+  BASE_SITE_ID: readEnv('BASE_SITE_ID', 'localserver-site'),
+  OCC_BASE_URL: readEnv('OCC_BASE_URL', 'https://localserver.example.com'),
+  WEBSITE_NODE_DEFAULT_VERSION: readEnv('WEBSITE_NODE_DEFAULT_VERSION', 'localserver-node')
 };
 
 (globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG__ = runtimeConfig;
@@ -86,7 +91,7 @@ app.get('**', (req, res, next) => {
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
 if (isMainModule(import.meta.url)) {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || process.env['APPSETTING_PORT'] || 4000;
   app.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });

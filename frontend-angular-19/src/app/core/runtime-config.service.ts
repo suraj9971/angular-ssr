@@ -80,7 +80,7 @@ export class RuntimeConfigService {
     }
 
     if (typeof process !== 'undefined' && process?.env) {
-      const processConfig = this.collectFromProcessEnv(process.env);
+      const processConfig = this.collectFromProcessEnv();
       if (this.hasValues(processConfig)) {
         return { config: this.normalize(processConfig), source: 'process.env' };
       }
@@ -115,13 +115,18 @@ export class RuntimeConfigService {
     return { config: {}, source: 'defaults' };
   }
 
-  private collectFromProcessEnv(env: Record<string, string | undefined>): Partial<RuntimeConfig> {
+  private collectFromProcessEnv(): Partial<RuntimeConfig> {
+    const readEnv = (name: keyof RuntimeConfig): string | undefined => {
+      const nodeEnv = process.env as Record<string, string | undefined>;
+      return nodeEnv[name] ?? nodeEnv[`APPSETTING_${name}`];
+    };
+
     return {
-      BASE_CURRENCY: env['BASE_CURRENCY'],
-      BASE_LANGUAGE: env['BASE_LANGUAGE'],
-      BASE_SITE_ID: env['BASE_SITE_ID'],
-      OCC_BASE_URL: env['OCC_BASE_URL'],
-      WEBSITE_NODE_DEFAULT_VERSION: env['WEBSITE_NODE_DEFAULT_VERSION']
+      BASE_CURRENCY: readEnv('BASE_CURRENCY'),
+      BASE_LANGUAGE: readEnv('BASE_LANGUAGE'),
+      BASE_SITE_ID: readEnv('BASE_SITE_ID'),
+      OCC_BASE_URL: readEnv('OCC_BASE_URL'),
+      WEBSITE_NODE_DEFAULT_VERSION: readEnv('WEBSITE_NODE_DEFAULT_VERSION')
     };
   }
 
