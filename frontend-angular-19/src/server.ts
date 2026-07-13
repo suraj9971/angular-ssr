@@ -12,6 +12,17 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 const app = express();
 const commonEngine = new CommonEngine();
 
+const runtimeConfig = {
+  BASE_CURRENCY: process.env['BASE_CURRENCY'] || 'USD',
+  BASE_LANGUAGE: process.env['BASE_LANGUAGE'] || 'en',
+  BASE_SITE_ID: process.env['BASE_SITE_ID'] || 'electronics-spa',
+  OCC_BASE_URL: process.env['OCC_BASE_URL'] || 'https://your-commerce.com',
+  WEBSITE_NODE_DEFAULT_VERSION: process.env['WEBSITE_NODE_DEFAULT_VERSION'] || '~22'
+};
+
+(globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG__ = runtimeConfig;
+(globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG_SOURCE__ = 'process.env';
+
 /**
  * Example Express Rest API endpoints can be defined here.
 
@@ -28,6 +39,14 @@ const commonEngine = new CommonEngine();
 /**
  * Serve static files from /browser
  */
+app.get('/assets/env.json', (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.setHeader('Surrogate-Control', 'no-store');
+  res.json(runtimeConfig);
+});
+
 app.get(
   '**',
   express.static(browserDistFolder, {
