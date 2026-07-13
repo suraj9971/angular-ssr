@@ -5,7 +5,7 @@
     "ng": "ng",
     "dev": "ng serve --port 4200",
     "start": "ng serve --port 4200",
-    "build": "ng build",
+    "build": "ng build  --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "coverage": "ng test --no-watch --code-coverage",
