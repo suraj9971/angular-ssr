@@ -13,11 +13,11 @@ const app = express();
 const commonEngine = new CommonEngine();
 
 const runtimeConfig = {
-  BASE_CURRENCY: process.env['BASE_CURRENCY'] || 'USD',
-  BASE_LANGUAGE: process.env['BASE_LANGUAGE'] || 'en',
-  BASE_SITE_ID: process.env['BASE_SITE_ID'] || 'electronics-spa',
-  OCC_BASE_URL: process.env['OCC_BASE_URL'] || 'https://your-commerce.com',
-  WEBSITE_NODE_DEFAULT_VERSION: process.env['WEBSITE_NODE_DEFAULT_VERSION'] || '~22'
+  BASE_CURRENCY: process.env['BASE_CURRENCY'] || '',
+  BASE_LANGUAGE: process.env['BASE_LANGUAGE'] || '',
+  BASE_SITE_ID: process.env['BASE_SITE_ID'] || '',
+  OCC_BASE_URL: process.env['OCC_BASE_URL'] || '',
+  WEBSITE_NODE_DEFAULT_VERSION: process.env['WEBSITE_NODE_DEFAULT_VERSION'] || ''
 };
 
 (globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG__ = runtimeConfig;
