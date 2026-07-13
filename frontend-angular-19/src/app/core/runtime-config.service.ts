@@ -88,16 +88,26 @@ export class RuntimeConfigService {
 
     if (isPlatformBrowser(this.platformId)) {
       try {
-        const response = await fetch('/assets/env.json', { cache: 'no-store' });
-        if (!response.ok) {
+        const serverResponse = await fetch('/api/runtime-config', { cache: 'no-store' });
+        if (serverResponse.ok) {
+          const serverData = await serverResponse.json();
+          return { config: this.normalize(serverData), source: 'api/runtime-config' };
+        }
+      } catch (_error) {
+        // Ignore and continue with asset fallback for local/static hosting scenarios.
+      }
+
+      try {
+        const assetResponse = await fetch('/assets/env.json', { cache: 'no-store' });
+        if (!assetResponse.ok) {
           console.warn('[RuntimeConfig] /assets/env.json not found; using defaults.');
           return { config: {}, source: 'defaults' };
         }
 
-        const data = await response.json();
-        return { config: this.normalize(data), source: 'assets/env.json' };
+        const assetData = await assetResponse.json();
+        return { config: this.normalize(assetData), source: 'assets/env.json' };
       } catch (error) {
-        console.warn('[RuntimeConfig] Failed to load /assets/env.json; using defaults.', error);
+        console.warn('[RuntimeConfig] Failed to load runtime config from API and /assets/env.json; using defaults.', error);
         return { config: {}, source: 'defaults' };
       }
     }

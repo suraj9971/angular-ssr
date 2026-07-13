@@ -23,6 +23,14 @@ const runtimeConfig = {
 (globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG__ = runtimeConfig;
 (globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG_SOURCE__ = 'process.env';
 
+app.get('/api/runtime-config', (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.setHeader('Surrogate-Control', 'no-store');
+  res.json(runtimeConfig);
+});
+
 /**
  * Example Express Rest API endpoints can be defined here.
 

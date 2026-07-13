@@ -470,8 +470,8 @@ export default {
   ]
 },
   assets: {
-    'index.csr.html': {size: 17132, hash: 'd7fcdc839d86538479fe01b3ea705866775b591ac4b86c8e0716e01a4721f466', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
-    'index.server.html': {size: 1571, hash: '5e965c1222e82194bb98d6f19b95735b1a6821b39391776f83544a33fbc299b2', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
+    'index.csr.html': {size: 17132, hash: 'd198da5c473d690a6aaaf7671ad197c24544bfa6beda1a98eb7066afa262c8e9', text: () => import('./assets-chunks/index_csr_html.mjs').then(m => m.default)},
+    'index.server.html': {size: 1571, hash: 'bf732db5e7cc737d84bef85db84f3335c065b9ba4a9eab9a23c4b1fb6c4cfba4', text: () => import('./assets-chunks/index_server_html.mjs').then(m => m.default)},
     'styles-LUSAEYDT.css': {size: 315150, hash: '+OwAbkGQVwc', text: () => import('./assets-chunks/styles-LUSAEYDT_css.mjs').then(m => m.default)}
   },
 };
