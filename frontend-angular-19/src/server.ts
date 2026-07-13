@@ -12,19 +12,9 @@ const indexHtml = join(serverDistFolder, 'index.server.html');
 const app = express();
 const commonEngine = new CommonEngine();
 
-const runtimeConfig = {
-  BASE_CURRENCY: process.env['BASE_CURRENCY'] || 'USD',
-  BASE_LANGUAGE: process.env['BASE_LANGUAGE'] || 'en',
-  BASE_SITE_ID: process.env['BASE_SITE_ID'] || 'electronics-spa',
-  OCC_BASE_URL: process.env['OCC_BASE_URL'] || 'https://your-commerce.com',
-  WEBSITE_NODE_DEFAULT_VERSION: process.env['WEBSITE_NODE_DEFAULT_VERSION'] || '~22'
-};
-
-(globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG__ = runtimeConfig;
-(globalThis as typeof globalThis & { __APP_RUNTIME_CONFIG__?: typeof runtimeConfig; __APP_RUNTIME_CONFIG_SOURCE__?: string }).__APP_RUNTIME_CONFIG_SOURCE__ = process.env['BASE_CURRENCY'] ? 'process.env' : 'defaults';
-
 /**
  * Example Express Rest API endpoints can be defined here.
+
  * Uncomment and define endpoints as necessary.
  *
  * Example:
